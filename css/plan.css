@@ -1,0 +1,87 @@
+.plan-page {
+  max-width: none;
+  padding: 24px 20px 60px;
+}
+
+.plan-page .subtitle a { color: #a8b4dd; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 18px;
+  font-size: .76rem;
+  color: #9aa0b8;
+  margin: 0 auto 18px;
+  max-width: 900px;
+}
+
+.legend i {
+  display: inline-block;
+  width: 26px;
+  height: 0;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.legend .l-two { border-top: 2px solid #8fa0d8; }
+.legend .l-one { border-top: 2px solid #e8c86a; }
+.legend .l-cond { border-top: 2px dashed #f06300; }
+
+#carte {
+  position: relative;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+#liens {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#zones .zone {
+  position: absolute;
+  font-size: .95rem;
+  letter-spacing: 3px;
+  color: #e8c86a;
+  text-transform: uppercase;
+  opacity: .8;
+}
+
+.lieu {
+  position: absolute;
+  width: 122px;
+  background: #131829;
+  border: 1px solid #4a3a26;
+  border-radius: 6px;
+  padding: 4px;
+  text-align: center;
+  font-size: .64rem;
+  line-height: 1.15;
+  color: #c8cde0;
+}
+
+.lieu canvas {
+  width: 112px;
+  height: 70px;
+  image-rendering: pixelated;
+  border-radius: 3px;
+  background: #000;
+  display: block;
+  margin: 0 auto 3px;
+}
+
+.lieu .num {
+  color: #e8c86a;
+  font-weight: bold;
+  margin-right: 3px;
+}
+
+.lieu .badges {
+  margin-top: 2px;
+  font-size: .7rem;
+  letter-spacing: 2px;
+}

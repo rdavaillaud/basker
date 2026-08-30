@@ -47,6 +47,32 @@ class Input {
   consumeSkip() { const s = this.skip; this.skip = false; return s; }
 }
 
+// ---------- panneau d'aide ----------
+function setupAide(data) {
+  const aide = document.getElementById('aide');
+  const btn = document.getElementById('btn-aide');
+  const verbes = document.getElementById('aide-verbes');
+  const noms = document.getElementById('aide-noms');
+  for (const v of data.verbes) {
+    const li = document.createElement('li');
+    li.innerHTML = `<b>${v.mot.slice(0, 3)}</b>${v.mot.slice(3)}${v.sans_complement ? ' <span class="seul">•</span>' : ''}`;
+    verbes.appendChild(li);
+  }
+  for (const n of data.noms) {
+    const li = document.createElement('li');
+    li.innerHTML = `<b>${n.mot.slice(0, 3)}</b>${n.mot.slice(3)}`;
+    noms.appendChild(li);
+  }
+  const toggle = () => {
+    aide.hidden = !aide.hidden;
+    btn.classList.toggle('active', !aide.hidden);
+  };
+  btn.addEventListener('click', () => { toggle(); btn.blur(); });
+  window.addEventListener('keydown', e => {
+    if (e.key === 'F1') { e.preventDefault(); toggle(); }
+  });
+}
+
 // ---------- boot ----------
 async function boot() {
   const canvas = document.getElementById('screen');
@@ -66,6 +92,7 @@ async function boot() {
   ]);
   status.textContent = '';
   overlay.querySelector('button').disabled = false;
+  setupAide(data);
 
   // rendu continu + clignotement curseur
   setInterval(() => { screen.cursor.blink = !screen.cursor.blink; screen.dirty = true; }, 400);
