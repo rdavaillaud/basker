@@ -1,0 +1,980 @@
+{
+  "commentaire": {
+    "sorties": "valeur = lieu destination (1-40), ou : 0=mur (Bing!), 41=«L'eau du lac est trop froide!», 42=proposition d'abandon, 43=«La porte est fermée», 44=noyade dans les marais (GLUPS), 65=«BING!AIE!Tu n'y voit rien!», 61-64=destination-50, sortie conditionnelle (12: bibliothèque actionnée, 13: panneau ouvert, 14: trappe ouverte, sinon mur), 99=retour au lieu précédent. En plus (ligne 655) : dest 18 fermée si D1=1 ou 2, dest 17 fermée si D1<2. Dest 14/15 dans le noir si chandelier éteint.",
+    "objet_slot": "0 = simple décor (pas un objet manipulable)"
+  },
+  "index_verbes_par_lettre": {
+    "A": 1,
+    "B": 3,
+    "C": 3,
+    "D": 3,
+    "E": 7,
+    "F": 13,
+    "G": 16,
+    "H": 17,
+    "I": 17,
+    "J": 18,
+    "K": 19,
+    "L": 19,
+    "M": 21,
+    "N": 24,
+    "O": 24,
+    "P": 25,
+    "Q": 28,
+    "R": 28,
+    "S": 31,
+    "T": 33,
+    "U": 33
+  },
+  "index_noms_par_lettre": {
+    "A": 1,
+    "B": 3,
+    "C": 6,
+    "D": 19,
+    "E": 21,
+    "F": 22,
+    "G": 24,
+    "H": 25,
+    "I": 25,
+    "J": 25,
+    "K": 25,
+    "L": 26,
+    "M": 29,
+    "N": 31,
+    "O": 31,
+    "P": 31,
+    "Q": 33,
+    "R": 33,
+    "S": 33,
+    "T": 33,
+    "U": 33
+  },
+  "objets": [
+    {
+      "slot": 1,
+      "nom": "ALLUMETTE",
+      "genre": "une",
+      "lieu_initial": 2,
+      "lieu_initial_nom": "Dans le manoir des Baskerville (hall, pied de l'escalier)"
+    },
+    {
+      "slot": 2,
+      "nom": "APPEAU",
+      "genre": "un",
+      "lieu_initial": 0,
+      "lieu_initial_nom": "porté/nulle part"
+    },
+    {
+      "slot": 3,
+      "nom": "CHIEN",
+      "genre": "un",
+      "lieu_initial": 8,
+      "lieu_initial_nom": "Au sous-sol"
+    },
+    {
+      "slot": 4,
+      "nom": "CHANDELIER",
+      "genre": "un",
+      "lieu_initial": 1,
+      "lieu_initial_nom": "Dans le manoir des Baskerville (hall)"
+    },
+    {
+      "slot": 5,
+      "nom": "CORNEMUSE",
+      "genre": "une",
+      "lieu_initial": 4,
+      "lieu_initial_nom": "Dans le manoir des Baskerville (couloir)"
+    },
+    {
+      "slot": 6,
+      "nom": "COURONNE",
+      "genre": "une",
+      "lieu_initial": 11,
+      "lieu_initial_nom": "Prince Charles-Edouard's bedroom"
+    },
+    {
+      "slot": 7,
+      "nom": "COQ DE BRUYERE",
+      "genre": "un",
+      "lieu_initial": 0,
+      "lieu_initial_nom": "porté/nulle part"
+    },
+    {
+      "slot": 8,
+      "nom": "CANNE DE GOLF",
+      "genre": "une",
+      "lieu_initial": 32,
+      "lieu_initial_nom": "Au terrain de golf"
+    },
+    {
+      "slot": 9,
+      "nom": "CLE",
+      "genre": "une",
+      "lieu_initial": 0,
+      "lieu_initial_nom": "porté/nulle part"
+    },
+    {
+      "slot": 10,
+      "nom": "CHAUSSURE",
+      "genre": "une",
+      "lieu_initial": 0,
+      "lieu_initial_nom": "porté/nulle part"
+    },
+    {
+      "slot": 11,
+      "nom": "CRUCIFIX",
+      "genre": "un",
+      "lieu_initial": 20,
+      "lieu_initial_nom": "A la chapelle"
+    },
+    {
+      "slot": 12,
+      "nom": "DOSSIER",
+      "genre": "un",
+      "lieu_initial": 17,
+      "lieu_initial_nom": "Au presbytère"
+    },
+    {
+      "slot": 13,
+      "nom": "FUSIL",
+      "genre": "un",
+      "lieu_initial": 21,
+      "lieu_initial_nom": "Au cimetière"
+    },
+    {
+      "slot": 14,
+      "nom": "FANION",
+      "genre": "un",
+      "lieu_initial": 11,
+      "lieu_initial_nom": "Prince Charles-Edouard's bedroom"
+    },
+    {
+      "slot": 15,
+      "nom": "KILT",
+      "genre": "un",
+      "lieu_initial": 9,
+      "lieu_initial_nom": "La chambre d'ami"
+    },
+    {
+      "slot": 16,
+      "nom": "LIVRE",
+      "genre": "un",
+      "lieu_initial": 6,
+      "lieu_initial_nom": "Au salon"
+    },
+    {
+      "slot": 17,
+      "nom": "LETTRE",
+      "genre": "une",
+      "lieu_initial": 0,
+      "lieu_initial_nom": "porté/nulle part"
+    },
+    {
+      "slot": 18,
+      "nom": "MESSAGE",
+      "genre": "un",
+      "lieu_initial": 0,
+      "lieu_initial_nom": "porté/nulle part"
+    },
+    {
+      "slot": 19,
+      "nom": "TRESOR",
+      "genre": "un",
+      "lieu_initial": 8,
+      "lieu_initial_nom": "Au sous-sol"
+    },
+    {
+      "slot": 20,
+      "nom": "TOISON",
+      "genre": "une",
+      "lieu_initial": 0,
+      "lieu_initial_nom": "porté/nulle part"
+    }
+  ],
+  "noms": [
+    {
+      "index": 1,
+      "mot": "ALLUMETTE",
+      "objet_slot": 1
+    },
+    {
+      "index": 2,
+      "mot": "APPEAU",
+      "objet_slot": 2
+    },
+    {
+      "index": 3,
+      "mot": "BATEAU",
+      "objet_slot": 0
+    },
+    {
+      "index": 4,
+      "mot": "BIBLIOTHEQUE",
+      "objet_slot": 0
+    },
+    {
+      "index": 5,
+      "mot": "BARQUE",
+      "objet_slot": 0
+    },
+    {
+      "index": 6,
+      "mot": "CHIEN",
+      "objet_slot": 3
+    },
+    {
+      "index": 7,
+      "mot": "CHANDELIER",
+      "objet_slot": 4
+    },
+    {
+      "index": 8,
+      "mot": "COFFRE-FORT",
+      "objet_slot": 0
+    },
+    {
+      "index": 9,
+      "mot": "CORNEMUSE",
+      "objet_slot": 5
+    },
+    {
+      "index": 10,
+      "mot": "COURONNE",
+      "objet_slot": 6
+    },
+    {
+      "index": 11,
+      "mot": "COQ DE BRUYERE",
+      "objet_slot": 7
+    },
+    {
+      "index": 12,
+      "mot": "CERCUEIL",
+      "objet_slot": 0
+    },
+    {
+      "index": 13,
+      "mot": "CANNE DE GOLF",
+      "objet_slot": 8
+    },
+    {
+      "index": 14,
+      "mot": "CLE",
+      "objet_slot": 9
+    },
+    {
+      "index": 15,
+      "mot": "CHAUSSURE",
+      "objet_slot": 10
+    },
+    {
+      "index": 16,
+      "mot": "CHENET",
+      "objet_slot": 0
+    },
+    {
+      "index": 17,
+      "mot": "CORDE",
+      "objet_slot": 0
+    },
+    {
+      "index": 18,
+      "mot": "CRUCIFIX",
+      "objet_slot": 11
+    },
+    {
+      "index": 19,
+      "mot": "DOSSIER",
+      "objet_slot": 12
+    },
+    {
+      "index": 20,
+      "mot": "DRAPEAU",
+      "objet_slot": 14
+    },
+    {
+      "index": 21,
+      "mot": "ENVELOPPE",
+      "objet_slot": 0
+    },
+    {
+      "index": 22,
+      "mot": "FUSIL",
+      "objet_slot": 13
+    },
+    {
+      "index": 23,
+      "mot": "FANION",
+      "objet_slot": 14
+    },
+    {
+      "index": 24,
+      "mot": "GOLF",
+      "objet_slot": 8
+    },
+    {
+      "index": 25,
+      "mot": "KILT",
+      "objet_slot": 15
+    },
+    {
+      "index": 26,
+      "mot": "LIVRE",
+      "objet_slot": 16
+    },
+    {
+      "index": 27,
+      "mot": "LAMPE",
+      "objet_slot": 0
+    },
+    {
+      "index": 28,
+      "mot": "LETTRE",
+      "objet_slot": 17
+    },
+    {
+      "index": 29,
+      "mot": "MESSAGE",
+      "objet_slot": 18
+    },
+    {
+      "index": 30,
+      "mot": "MOUTON",
+      "objet_slot": 20
+    },
+    {
+      "index": 31,
+      "mot": "POMPON",
+      "objet_slot": 0
+    },
+    {
+      "index": 32,
+      "mot": "PASTEUR",
+      "objet_slot": 0
+    },
+    {
+      "index": 33,
+      "mot": "TIROIR",
+      "objet_slot": 0
+    },
+    {
+      "index": 34,
+      "mot": "TRESOR",
+      "objet_slot": 19
+    },
+    {
+      "index": 35,
+      "mot": "TOISON",
+      "objet_slot": 20
+    }
+  ],
+  "verbes": [
+    {
+      "index": 1,
+      "mot": "ACTIONNE",
+      "sans_complement": false
+    },
+    {
+      "index": 2,
+      "mot": "ALLUME",
+      "sans_complement": false
+    },
+    {
+      "index": 3,
+      "mot": "DONNE",
+      "sans_complement": false
+    },
+    {
+      "index": 4,
+      "mot": "DETACHE",
+      "sans_complement": false
+    },
+    {
+      "index": 5,
+      "mot": "DECROCHE",
+      "sans_complement": false
+    },
+    {
+      "index": 6,
+      "mot": "DESCENDS",
+      "sans_complement": true
+    },
+    {
+      "index": 7,
+      "mot": "ETEINS",
+      "sans_complement": false
+    },
+    {
+      "index": 8,
+      "mot": "ECOUTE",
+      "sans_complement": true
+    },
+    {
+      "index": 9,
+      "mot": "ENTRE",
+      "sans_complement": false
+    },
+    {
+      "index": 10,
+      "mot": "EMMENE",
+      "sans_complement": false
+    },
+    {
+      "index": 11,
+      "mot": "ENFILE",
+      "sans_complement": false
+    },
+    {
+      "index": 12,
+      "mot": "ENLEVE",
+      "sans_complement": false
+    },
+    {
+      "index": 13,
+      "mot": "FAIS SENTIR",
+      "sans_complement": false
+    },
+    {
+      "index": 14,
+      "mot": "FOUILLE",
+      "sans_complement": false
+    },
+    {
+      "index": 15,
+      "mot": "FERME",
+      "sans_complement": false
+    },
+    {
+      "index": 16,
+      "mot": "GRATTE",
+      "sans_complement": false
+    },
+    {
+      "index": 17,
+      "mot": "INVENTAIRE",
+      "sans_complement": true
+    },
+    {
+      "index": 18,
+      "mot": "JOUE",
+      "sans_complement": false
+    },
+    {
+      "index": 19,
+      "mot": "LIS",
+      "sans_complement": false
+    },
+    {
+      "index": 20,
+      "mot": "LACHE",
+      "sans_complement": false
+    },
+    {
+      "index": 21,
+      "mot": "MONTE",
+      "sans_complement": true
+    },
+    {
+      "index": 22,
+      "mot": "METS",
+      "sans_complement": false
+    },
+    {
+      "index": 23,
+      "mot": "MANGE",
+      "sans_complement": false
+    },
+    {
+      "index": 24,
+      "mot": "OUVRE",
+      "sans_complement": false
+    },
+    {
+      "index": 25,
+      "mot": "PRENDS",
+      "sans_complement": false
+    },
+    {
+      "index": 26,
+      "mot": "POSE",
+      "sans_complement": false
+    },
+    {
+      "index": 27,
+      "mot": "PARLEMENTE",
+      "sans_complement": true
+    },
+    {
+      "index": 28,
+      "mot": "REGARDE",
+      "sans_complement": false
+    },
+    {
+      "index": 29,
+      "mot": "REMETS",
+      "sans_complement": false
+    },
+    {
+      "index": 30,
+      "mot": "RAME",
+      "sans_complement": true
+    },
+    {
+      "index": 31,
+      "mot": "SORS",
+      "sans_complement": true
+    },
+    {
+      "index": 32,
+      "mot": "SUIS",
+      "sans_complement": false
+    },
+    {
+      "index": 33,
+      "mot": "TIRE",
+      "sans_complement": false
+    }
+  ],
+  "lieux": [
+    {
+      "id": 1,
+      "nom": "Dans le manoir des Baskerville (hall)",
+      "image": 21,
+      "sorties": {
+        "haut (nord)": 2,
+        "bas (sud)": 29,
+        "droite (est)": 3,
+        "gauche (ouest)": 5
+      }
+    },
+    {
+      "id": 2,
+      "nom": "Dans le manoir des Baskerville (hall, pied de l'escalier)",
+      "image": 23,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 1,
+        "droite (est)": 7,
+        "gauche (ouest)": 6
+      }
+    },
+    {
+      "id": 3,
+      "nom": "A l'étage",
+      "image": 25,
+      "sorties": {
+        "haut (nord)": 4,
+        "bas (sud)": 0,
+        "droite (est)": 1,
+        "gauche (ouest)": 9
+      }
+    },
+    {
+      "id": 4,
+      "nom": "Dans le manoir des Baskerville (couloir)",
+      "image": 26,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 3,
+        "droite (est)": 11,
+        "gauche (ouest)": 10
+      }
+    },
+    {
+      "id": 5,
+      "nom": "A la cuisine",
+      "image": 27,
+      "sorties": {
+        "haut (nord)": 6,
+        "bas (sud)": 0,
+        "droite (est)": 1,
+        "gauche (ouest)": 8
+      }
+    },
+    {
+      "id": 6,
+      "nom": "Au salon",
+      "image": 24,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 5,
+        "droite (est)": 2,
+        "gauche (ouest)": 62
+      }
+    },
+    {
+      "id": 7,
+      "nom": "La salle des trophées",
+      "image": 28,
+      "sorties": {
+        "haut (nord)": 64,
+        "bas (sud)": 0,
+        "droite (est)": 0,
+        "gauche (ouest)": 2
+      }
+    },
+    {
+      "id": 8,
+      "nom": "Au sous-sol",
+      "image": 29,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 0,
+        "droite (est)": 5,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 9,
+      "nom": "La chambre d'ami",
+      "image": 30,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 0,
+        "droite (est)": 3,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 10,
+      "nom": "Oncle Alexander's bedroom",
+      "image": 31,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 0,
+        "droite (est)": 4,
+        "gauche (ouest)": 63
+      }
+    },
+    {
+      "id": 11,
+      "nom": "Prince Charles-Edouard's bedroom",
+      "image": 32,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 0,
+        "droite (est)": 0,
+        "gauche (ouest)": 4
+      }
+    },
+    {
+      "id": 12,
+      "nom": "Secret passage",
+      "image": 36,
+      "sorties": {
+        "haut (nord)": 13,
+        "bas (sud)": 0,
+        "droite (est)": 6,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 13,
+      "nom": "Secret passage",
+      "image": 34,
+      "sorties": {
+        "haut (nord)": 12,
+        "bas (sud)": 0,
+        "droite (est)": 10,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 14,
+      "nom": "Secret passage",
+      "image": 35,
+      "sorties": {
+        "haut (nord)": 15,
+        "bas (sud)": 7,
+        "droite (est)": 0,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 15,
+      "nom": "Secret passage (geôle d'Alexander)",
+      "image": 33,
+      "sorties": {
+        "haut (nord)": 16,
+        "bas (sud)": 65,
+        "droite (est)": 0,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 16,
+      "nom": "Secret passage",
+      "image": 37,
+      "sorties": {
+        "haut (nord)": 31,
+        "bas (sud)": 65,
+        "droite (est)": 0,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 17,
+      "nom": "Au presbytère",
+      "image": 38,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 20,
+        "droite (est)": 0,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 18,
+      "nom": "Chez les Vandeleur",
+      "image": 39,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 34,
+        "droite (est)": 0,
+        "gauche (ouest)": 0
+      }
+    },
+    {
+      "id": 19,
+      "nom": "Dans les marais de Grimpen",
+      "image": 105,
+      "sorties": {
+        "haut (nord)": 44,
+        "bas (sud)": 44,
+        "droite (est)": 44,
+        "gauche (ouest)": 99
+      }
+    },
+    {
+      "id": 20,
+      "nom": "A la chapelle",
+      "image": 40,
+      "sorties": {
+        "haut (nord)": 17,
+        "bas (sud)": 22,
+        "droite (est)": 0,
+        "gauche (ouest)": 17
+      }
+    },
+    {
+      "id": 21,
+      "nom": "Au cimetière",
+      "image": 99,
+      "sorties": {
+        "haut (nord)": 41,
+        "bas (sud)": 41,
+        "droite (est)": 22,
+        "gauche (ouest)": 36
+      }
+    },
+    {
+      "id": 22,
+      "nom": "St Patrick's Church",
+      "image": 111,
+      "sorties": {
+        "haut (nord)": 20,
+        "bas (sud)": 41,
+        "droite (est)": 37,
+        "gauche (ouest)": 21
+      }
+    },
+    {
+      "id": 23,
+      "nom": "Sur la lande pourpre de l'automne",
+      "image": 108,
+      "sorties": {
+        "haut (nord)": 34,
+        "bas (sud)": 42,
+        "droite (est)": 24,
+        "gauche (ouest)": 38
+      }
+    },
+    {
+      "id": 24,
+      "nom": "Sur la lande pourpre de l'automne",
+      "image": 75,
+      "sorties": {
+        "haut (nord)": 29,
+        "bas (sud)": 42,
+        "droite (est)": 19,
+        "gauche (ouest)": 23
+      }
+    },
+    {
+      "id": 25,
+      "nom": "Sur la lande pourpre de l'automne",
+      "image": 76,
+      "sorties": {
+        "haut (nord)": 26,
+        "bas (sud)": 34,
+        "droite (est)": 29,
+        "gauche (ouest)": 39
+      }
+    },
+    {
+      "id": 26,
+      "nom": "Sur la lande pourpre de l'automne",
+      "image": 77,
+      "sorties": {
+        "haut (nord)": 35,
+        "bas (sud)": 25,
+        "droite (est)": 27,
+        "gauche (ouest)": 40
+      }
+    },
+    {
+      "id": 27,
+      "nom": "Sur la lande pourpre de l'automne",
+      "image": 81,
+      "sorties": {
+        "haut (nord)": 28,
+        "bas (sud)": 29,
+        "droite (est)": 31,
+        "gauche (ouest)": 26
+      }
+    },
+    {
+      "id": 28,
+      "nom": "Dans les marais de Grimpen",
+      "image": 105,
+      "sorties": {
+        "haut (nord)": 44,
+        "bas (sud)": 99,
+        "droite (est)": 44,
+        "gauche (ouest)": 44
+      }
+    },
+    {
+      "id": 29,
+      "nom": "Aux abords du manoir",
+      "image": 103,
+      "sorties": {
+        "haut (nord)": 1,
+        "bas (sud)": 24,
+        "droite (est)": 30,
+        "gauche (ouest)": 25
+      }
+    },
+    {
+      "id": 30,
+      "nom": "Aux abords du manoir",
+      "image": 86,
+      "sorties": {
+        "haut (nord)": 31,
+        "bas (sud)": 29,
+        "droite (est)": 19,
+        "gauche (ouest)": 29
+      }
+    },
+    {
+      "id": 31,
+      "nom": "Au Square",
+      "image": 82,
+      "sorties": {
+        "haut (nord)": 32,
+        "bas (sud)": 30,
+        "droite (est)": 19,
+        "gauche (ouest)": 27
+      }
+    },
+    {
+      "id": 32,
+      "nom": "Au terrain de golf",
+      "image": 88,
+      "sorties": {
+        "haut (nord)": 28,
+        "bas (sud)": 31,
+        "droite (est)": 19,
+        "gauche (ouest)": 27
+      }
+    },
+    {
+      "id": 33,
+      "nom": "LOCH NESS",
+      "image": 107,
+      "sorties": {
+        "haut (nord)": 0,
+        "bas (sud)": 0,
+        "droite (est)": 38,
+        "gauche (ouest)": 37
+      }
+    },
+    {
+      "id": 34,
+      "nom": "Une petite maison dans la prairie (chez les Vandeleur, extérieur)",
+      "image": 92,
+      "sorties": {
+        "haut (nord)": 68,
+        "bas (sud)": 23,
+        "droite (est)": 24,
+        "gauche (ouest)": 38
+      }
+    },
+    {
+      "id": 35,
+      "nom": "Une petite maison dans la prairie (chez le berger)",
+      "image": 95,
+      "sorties": {
+        "haut (nord)": 43,
+        "bas (sud)": 26,
+        "droite (est)": 27,
+        "gauche (ouest)": 40
+      }
+    },
+    {
+      "id": 36,
+      "nom": "LOCH NESS",
+      "image": 123,
+      "sorties": {
+        "haut (nord)": 41,
+        "bas (sud)": 215,
+        "droite (est)": 41,
+        "gauche (ouest)": 21
+      }
+    },
+    {
+      "id": 37,
+      "nom": "A l'embarcadère",
+      "image": 125,
+      "sorties": {
+        "haut (nord)": 41,
+        "bas (sud)": 41,
+        "droite (est)": 41,
+        "gauche (ouest)": 33
+      }
+    },
+    {
+      "id": 38,
+      "nom": "A l'embarcadère (côté Murdock)",
+      "image": 118,
+      "sorties": {
+        "haut (nord)": 22,
+        "bas (sud)": 39,
+        "droite (est)": 41,
+        "gauche (ouest)": 23
+      }
+    },
+    {
+      "id": 39,
+      "nom": "Sur une rive du Loch Ness",
+      "image": 120,
+      "sorties": {
+        "haut (nord)": 33,
+        "bas (sud)": 40,
+        "droite (est)": 38,
+        "gauche (ouest)": 25
+      }
+    },
+    {
+      "id": 40,
+      "nom": "Sur une rive du Loch Ness",
+      "image": 121,
+      "sorties": {
+        "haut (nord)": 41,
+        "bas (sud)": 41,
+        "droite (est)": 39,
+        "gauche (ouest)": 26
+      }
+    }
+  ]
+}
