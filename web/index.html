@@ -11,21 +11,50 @@
     <h1>Le Trésor des Baskerville</h1>
     <p class="subtitle">Jeu d'aventure © CHIP 1987 — André Rocques &amp; Paul Duplierto —
       portage web du jeu Thomson TO8 (graphismes vectoriels originaux émulés)</p>
-    <div class="frame">
-      <canvas id="screen" width="640" height="400"></canvas>
-      <div id="overlay">
-        <div class="panel">
-          <h2>Le Trésor des Baskerville</h2>
-          <p>Votre oncle Alexander Baskerville est mort dans un mystérieux
-            accident de chasse près du Loch Ness. Vous voilà, jeune héritier,
-            au manoir familial…</p>
-          <p class="keys">Tapez les <b>3 premières lettres</b> de chaque mot ·
-            <b>Entrée</b> valide · <b>Retour</b> efface un mot ·
-            <b>Flèches</b> pour se déplacer · <b>Échap</b> passe l'intro</p>
-          <button disabled>JOUER</button>
-          <p id="status">Chargement…</p>
+    <div class="toolbar">
+      <button id="btn-aide" type="button" title="F1">? AIDE</button>
+      <a class="btn" href="plan.html" target="_blank" rel="noopener">🗺 PLAN</a>
+    </div>
+    <div class="stage">
+      <div class="frame">
+        <canvas id="screen" width="640" height="400"></canvas>
+        <div id="overlay">
+          <div class="panel">
+            <h2>Le Trésor des Baskerville</h2>
+            <p>Votre oncle Alexander Baskerville est mort dans un mystérieux
+              accident de chasse près du Loch Ness. Vous voilà, jeune héritier,
+              au manoir familial…</p>
+            <p class="keys">Tapez les <b>3 premières lettres</b> de chaque mot ·
+              <b>Entrée</b> valide · <b>Retour</b> efface un mot ·
+              <b>Flèches</b> pour se déplacer · <b>Échap</b> passe l'intro</p>
+            <button disabled>JOUER</button>
+            <p id="status">Chargement…</p>
+          </div>
         </div>
       </div>
+      <aside id="aide" hidden>
+        <h3>Aide</h3>
+        <section>
+          <h4>Manipulations</h4>
+          <ul class="plain">
+            <li><b>3 premières lettres</b> de chaque mot, le jeu complète</li>
+            <li><b>Entrée</b> valide l'ordre</li>
+            <li><b>Retour arrière</b> efface le dernier mot</li>
+            <li><b>Flèches</b> ← ↑ ↓ → : déplacements</li>
+          </ul>
+        </section>
+        <section>
+          <h4>Verbes</h4>
+          <ul id="aide-verbes" class="words"></ul>
+        </section>
+        <section>
+          <h4>Noms</h4>
+          <ul id="aide-noms" class="words"></ul>
+        </section>
+        <p class="note">Un ordre = un verbe seul (ex : PARLEMENTE) ou un
+          verbe suivi d'un nom (ex : ACTIONNE FUSIL). Les verbes marqués
+          « • » s'emploient seuls.</p>
+      </aside>
     </div>
     <p class="footer">
       Portage fidèle : les dessins sont tracés par le moteur 6809 d'origine
