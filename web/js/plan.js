@@ -7,22 +7,24 @@ import { PictureEngine } from './pictures.js';
 
 // Position (colonne, ligne) de chaque lieu, calée sur les directions de la
 // table des déplacements : nord = haut, sud = bas, est = droite, ouest =
-// gauche. Quelques liaisons restent forcément courbes : l'escalier 1↔3
-// (les deux se disent « à l'est » l'un de l'autre), le tunnel 16→31, et la
-// traversée du Loch Ness (33/37/38) qui boucle sur elle-même.
+// gauche. La géographie du jeu est presque parfaitement plane : en marchant
+// vers l'ouest depuis la lande on traverse 24, 23, 38, le lac (33), 37,
+// 22, 21, 36 — le village est à l'ouest du Loch, la lande et le manoir à
+// l'est. Restent courbes : l'escalier 1↔3 (chacun se dit « à l'est » de
+// l'autre) et le tunnel du passage secret 16→31.
 const POS = {
-  // le manoir : sous-sol -> rez-de-chaussée -> étage, passage secret
-  16: [3, -1],
-  10: [1, 0], 4: [2, 0], 15: [3, 0], 11: [4, 0],
-  13: [0, 1], 9: [1, 1], 3: [2, 1], 14: [3, 1],
-  12: [0, 2], 6: [1, 2], 2: [2, 2], 7: [3, 2],
-  8: [0, 3], 5: [1, 3], 1: [2, 3],
-  // extérieur : rive ouest du Loch, prairie/lande, abords, marais, village
-  35: [1, 5], 28: [2, 5], 32: [3, 5], 17: [5, 5],
-  40: [0, 6], 26: [1, 6], 27: [2, 6], 31: [3, 6], 19: [4, 6], 20: [5, 6],
-  39: [0, 7], 25: [1, 7], 18: [2, 7], 30: [3, 7], 21: [4, 7], 22: [5, 7], 37: [6, 7],
-  33: [-1, 8], 38: [0, 8], 34: [1, 8], 29: [2, 8], 36: [3, 8],
-  23: [1, 9], 24: [2, 9],
+  // le manoir (au nord-est) : étage en haut, rez-de-chaussée, sous-sol
+  16: [8, -1],
+  10: [6, 0], 4: [7, 0], 15: [8, 0], 11: [9, 0],
+  13: [5, 1], 9: [6, 1], 3: [7, 1], 14: [8, 1],
+  12: [5, 2], 6: [6, 2], 2: [7, 2], 7: [8, 2],
+  8: [5, 3], 5: [6, 3], 1: [7, 3],
+  // extérieur, d'ouest en est : village, Loch Ness, rives, lande, marais
+  35: [6, 5],
+  26: [6, 6], 28: [7, 6], 32: [8, 6],
+  17: [2, 7], 40: [5, 7], 25: [6, 7], 27: [7, 7], 31: [8, 7],
+  20: [2, 8], 18: [4, 8], 39: [5, 8], 34: [6, 8], 29: [7, 8], 30: [8, 8], 19: [9, 8],
+  36: [0, 9], 21: [1, 9], 22: [2, 9], 37: [3, 9], 33: [4, 9], 38: [5, 9], 23: [6, 9], 24: [7, 9],
 };
 
 const COL_W = 142, ROW_H = 122, CARD_W = 122, CARD_H = 104;
@@ -124,7 +126,7 @@ async function main() {
 
   // zones + rose des vents
   const zones = document.getElementById('zones');
-  for (const [txt, c, r] of [['Le manoir des Baskerville', 0, MIN_R - 0.27],
+  for (const [txt, c, r] of [['Le manoir des Baskerville', 5, MIN_R - 0.27],
                              ['La lande, le village et le Loch Ness', 0, 4.7]]) {
     const el = document.createElement('div');
     el.className = 'zone';
