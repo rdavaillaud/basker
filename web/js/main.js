@@ -85,7 +85,7 @@ function setupAide(data, input) {
 }
 
 // ---------- commandes tactiles (mobile) ----------
-function setupTouch(input, toggleAide) {
+function setupTouch(input, data) {
   const touch = document.getElementById('touch');
   const mobile = (matchMedia('(pointer: coarse)').matches && navigator.maxTouchPoints > 0)
     || matchMedia('(max-width: 720px)').matches;
@@ -98,8 +98,19 @@ function setupTouch(input, toggleAide) {
       input.push(parseInt(b.dataset.k, 10));
     });
   }
-  // sur mobile, l'aide (qui sert de pavé de commandes) s'ouvre d'office
-  toggleAide();
+  // pastilles verbes / noms : un appui tape les 3 premières lettres
+  const fill = (id, words) => {
+    const box = document.getElementById(id);
+    for (const mot of words) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.innerHTML = `<b>${mot.slice(0, 3)}</b>${mot.slice(3)}`;
+      b.addEventListener('click', e => { e.preventDefault(); input.pushWord(mot); });
+      box.appendChild(b);
+    }
+  };
+  fill('chips-verbes', data.verbes.map(v => v.mot));
+  fill('chips-noms', data.noms.map(n => n.mot));
 }
 
 // ---------- boot ----------
@@ -121,8 +132,8 @@ async function boot() {
   ]);
   status.textContent = '';
   overlay.querySelector('button').disabled = false;
-  const toggleAide = setupAide(data, input);
-  setupTouch(input, toggleAide);
+  setupAide(data, input);
+  setupTouch(input, data);
 
   // rendu continu + clignotement curseur
   setInterval(() => { screen.cursor.blink = !screen.cursor.blink; screen.dirty = true; }, 400);

@@ -33,24 +33,31 @@
         </div>
       </div>
       <div id="touch" hidden>
-        <div class="pad">
-          <button data-k="11" class="up">▲</button>
-          <button data-k="8" class="left">◀</button>
-          <button data-k="10" class="down">▼</button>
-          <button data-k="9" class="right">▶</button>
-        </div>
-        <div class="keys">
-          <button data-k="13" class="wide">ENTRÉE</button>
-          <button data-k="29" class="wide">EFF</button>
-          <div class="minis">
-            <button data-k="79">O</button>
-            <button data-k="78">N</button>
-            <button data-k="49">1</button>
-            <button data-k="50">2</button>
+        <div class="bar">
+          <div class="pad">
+            <button data-k="11" class="up">▲</button>
+            <button data-k="8" class="left">◀</button>
+            <button data-k="10" class="down">▼</button>
+            <button data-k="9" class="right">▶</button>
           </div>
-          <button data-k="27" class="wide">⏭ PASSER L'INTRO</button>
-          <p class="hint">Touchez un verbe puis un nom dans l'aide ⤵</p>
+          <div class="keys">
+            <button data-k="13" class="wide ok">ENTRÉE ⏎</button>
+            <div class="minis">
+              <button data-k="29">⌫ EFF</button>
+              <button data-k="27">⏭ INTRO</button>
+            </div>
+            <div class="minis" title="Réponses aux questions du jeu">
+              <button data-k="79">OUI</button>
+              <button data-k="78">NON</button>
+              <button data-k="49">1</button>
+              <button data-k="50">2</button>
+            </div>
+          </div>
         </div>
+        <p class="hint">Composez un ordre : un verbe, puis éventuellement un
+          nom, puis ENTRÉE. OUI/NON et 1/2 répondent aux questions du jeu.</p>
+        <div class="chips" id="chips-verbes"></div>
+        <div class="chips noms" id="chips-noms"></div>
       </div>
       <aside id="aide" hidden>
         <h3>Aide</h3>
