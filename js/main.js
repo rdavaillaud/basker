@@ -1,11 +1,11 @@
 // Point d'entrée du portage web du Trésor des Baskerville.
 
-import { Emu6809 } from './emu6809.js?v=20260830-1631-4a41c57';
-import { TO8Screen } from './to8.js?v=20260830-1631-4a41c57';
-import { PictureEngine } from './pictures.js?v=20260830-1631-4a41c57';
-import { ThomsonAudio } from './audio.js?v=20260830-1631-4a41c57';
-import { Game, GameRestart } from './game.js?v=20260830-1631-4a41c57';
-import { Intro, IntroSkip } from './intro.js?v=20260830-1631-4a41c57';
+import { Emu6809 } from './emu6809.js?v=20260830-1639-5f5ccec';
+import { TO8Screen } from './to8.js?v=20260830-1639-5f5ccec';
+import { PictureEngine } from './pictures.js?v=20260830-1639-5f5ccec';
+import { ThomsonAudio } from './audio.js?v=20260830-1639-5f5ccec';
+import { Game, GameRestart } from './game.js?v=20260830-1639-5f5ccec';
+import { Intro, IntroSkip } from './intro.js?v=20260830-1639-5f5ccec';
 
 // ---------- clavier façon TO8 ----------
 class Input {
@@ -136,7 +136,7 @@ async function boot() {
   status.textContent = 'Chargement des données originales…';
   const [bins, data] = await Promise.all([
     PictureEngine.loadData('data'),
-    fetch('data/game-data.json?v=20260830-1631-4a41c57').then(r => r.json()),
+    fetch('data/game-data.json?v=20260830-1639-5f5ccec').then(r => r.json()),
   ]);
   status.textContent = '';
   overlay.querySelector('button').disabled = false;
