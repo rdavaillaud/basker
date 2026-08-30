@@ -5,28 +5,43 @@
 import { Emu6809 } from './emu6809.js';
 import { PictureEngine } from './pictures.js';
 
-// Position (colonne, ligne) de chaque lieu sur la carte.
+// Position (colonne, ligne) de chaque lieu, calée sur les directions de la
+// table des déplacements : nord = haut, sud = bas, est = droite, ouest =
+// gauche. Quelques liaisons restent forcément courbes : l'escalier 1↔3
+// (les deux se disent « à l'est » l'un de l'autre), le tunnel 16→31, et la
+// traversée du Loch Ness (33/37/38) qui boucle sur elle-même.
 const POS = {
-  // le manoir : étage, rez-de-chaussée, sous-sol, passage secret
-  13: [0, 0], 10: [1, 0], 4: [2, 0], 11: [3, 0], 16: [4, 0],
-  12: [0, 1], 9: [1, 1], 3: [2, 1], 15: [4, 1],
-  6: [0, 2], 2: [1, 2], 7: [2, 2], 14: [3, 2],
+  // le manoir : sous-sol -> rez-de-chaussée -> étage, passage secret
+  16: [3, -1],
+  10: [1, 0], 4: [2, 0], 15: [3, 0], 11: [4, 0],
+  13: [0, 1], 9: [1, 1], 3: [2, 1], 14: [3, 1],
+  12: [0, 2], 6: [1, 2], 2: [2, 2], 7: [3, 2],
   8: [0, 3], 5: [1, 3], 1: [2, 3],
-  // extérieur : prairie, lande, marais, village, Loch Ness
-  35: [0, 5], 26: [1, 5], 27: [2, 5], 28: [3, 5], 32: [4, 5], 17: [5, 5],
-  40: [0, 6], 25: [1, 6], 29: [2, 6], 30: [3, 6], 31: [4, 6], 20: [5, 6],
-  39: [0, 7], 34: [1, 7], 19: [3, 7], 21: [4, 7], 22: [5, 7], 37: [6, 7],
-  18: [0, 8], 23: [1, 8], 24: [2, 8], 36: [4, 8], 33: [5, 8], 38: [6, 8],
+  // extérieur : rive ouest du Loch, prairie/lande, abords, marais, village
+  35: [1, 5], 28: [2, 5], 32: [3, 5], 17: [5, 5],
+  26: [1, 6], 27: [2, 6], 31: [3, 6], 19: [4, 6], 20: [5, 6],
+  18: [0, 7], 25: [1, 7], 30: [3, 7], 21: [4, 7], 22: [5, 7], 37: [6, 7],
+  33: [0, 8], 34: [1, 8], 29: [2, 8], 36: [3, 8],
+  38: [0, 9], 23: [1, 9], 24: [2, 9],
+  39: [0, 10],
+  40: [0, 11],
 };
 
 const COL_W = 142, ROW_H = 122, CARD_W = 122, CARD_H = 104;
 const OX = 10, OY = 34;
+const MIN_R = Math.min(...Object.values(POS).map(p => p[1]));
+const MIN_C = Math.min(...Object.values(POS).map(p => p[0]));
 
 const DIRS = ['haut (nord)', 'bas (sud)', 'droite (est)', 'gauche (ouest)'];
 
-const center = p => {
+const corner = p => {
   const [c, r] = POS[p];
-  return [OX + c * COL_W + CARD_W / 2, OY + r * ROW_H + CARD_H / 2];
+  return [OX + (c - MIN_C) * COL_W, OY + (r - MIN_R) * ROW_H];
+};
+
+const center = p => {
+  const [x, y] = corner(p);
+  return [x + CARD_W / 2, y + CARD_H / 2];
 };
 
 // palette (mêmes valeurs que to8.js)
@@ -104,32 +119,38 @@ async function main() {
   const maxC = Math.max(...Object.values(POS).map(p => p[0]));
   const maxR = Math.max(...Object.values(POS).map(p => p[1]));
   const carte = document.getElementById('carte');
-  const W = OX * 2 + (maxC + 1) * COL_W;
-  const H = OY + (maxR + 1) * ROW_H + 10;
+  const W = OX * 2 + (maxC - MIN_C + 1) * COL_W;
+  const H = OY + (maxR - MIN_R + 1) * ROW_H + 10;
   carte.style.width = W + 'px';
   carte.style.height = H + 'px';
 
-  // zones
+  // zones + rose des vents
   const zones = document.getElementById('zones');
-  for (const [txt, c, r] of [['Le manoir des Baskerville', 0, -0.27],
-                             ['La lande, le village et le Loch Ness', 0, 4.73]]) {
+  for (const [txt, c, r] of [['Le manoir des Baskerville', 0, MIN_R - 0.27],
+                             ['La lande, le village et le Loch Ness', 0, 4.7]]) {
     const el = document.createElement('div');
     el.className = 'zone';
     el.textContent = txt;
-    el.style.left = (OX + c * COL_W) + 'px';
-    el.style.top = (OY + r * ROW_H) + 'px';
+    el.style.left = (OX + (c - MIN_C) * COL_W) + 'px';
+    el.style.top = (OY + (r - MIN_R) * ROW_H) + 'px';
     zones.appendChild(el);
   }
+  const rose = document.createElement('div');
+  rose.className = 'rose';
+  rose.innerHTML = '<span class="n">N</span><span class="o">O</span>✛<span class="e">E</span><span class="s">S</span>';
+  rose.style.left = (W - 80) + 'px';
+  rose.style.top = '2px';
+  zones.appendChild(rose);
 
   // cartes des lieux
   const lieux = document.getElementById('lieux');
   const canvases = {};
   for (const room of rooms) {
-    const [c, r] = POS[room.id];
+    const [x, y] = corner(room.id);
     const div = document.createElement('div');
     div.className = 'lieu';
-    div.style.left = (OX + c * COL_W) + 'px';
-    div.style.top = (OY + r * ROW_H) + 'px';
+    div.style.left = x + 'px';
+    div.style.top = y + 'px';
     const cv = document.createElement('canvas');
     cv.width = 224; cv.height = 140;
     canvases[room.id] = cv;
