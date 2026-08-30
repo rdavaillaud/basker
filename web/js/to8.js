@@ -44,9 +44,10 @@ export class TO8Screen {
       return;
     }
     this.emu.forme[off] |= bit;
+    // Octet couleur TO8 : forme = bits 3-6, fond = bits 0-2 + bit 7
+    // (vérifié contre des captures du jeu original).
     const color = this.emu.mem[0x6038] & 0x0F;
-    const hw = (color & 0x07) | ((color & 0x08) << 4);
-    this.emu.couleur[off] = (this.emu.couleur[off] & 0x78) | hw;
+    this.emu.couleur[off] = (this.emu.couleur[off] & 0x87) | (color << 3);
   }
 
   romPoint(e) {
@@ -73,8 +74,9 @@ export class TO8Screen {
 
   // ---------- écran graphique ----------
   clearGraphics(fond = 0) {
+    const hw = fond ^ 8;
     this.emu.forme.fill(0, 0, 0x1F40);
-    this.emu.couleur.fill(((fond ^ 8) & 0x0F) << 3, 0, 0x1F40);
+    this.emu.couleur.fill((hw & 0x07) | ((hw & 0x08) << 4), 0, 0x1F40);
     this.dirty = true;
   }
 
@@ -163,8 +165,8 @@ export class TO8Screen {
       for (let xb = 0; xb < 40; xb++) {
         const off = y * 40 + xb;
         const fb = forme[off], cb = couleur[off];
-        const fg = PALETTE_RGB[hwToIndex((cb & 0x07) | ((cb >> 4) & 0x08))];
-        const bg = PALETTE_RGB[hwToIndex((cb >> 3) & 0x0F)];
+        const fg = PALETTE_RGB[hwToIndex((cb >> 3) & 0x0F)];
+        const bg = PALETTE_RGB[hwToIndex((cb & 0x07) | ((cb >> 4) & 0x08))];
         for (let b = 0; b < 8; b++) {
           const c = (fb & (0x80 >> b)) ? fg : bg;
           data[p] = c[0]; data[p + 1] = c[1]; data[p + 2] = c[2]; data[p + 3] = 255;

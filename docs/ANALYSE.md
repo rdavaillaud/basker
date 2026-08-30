@@ -229,8 +229,9 @@ animations rythmées par les boucles `EXECK` du BASIC.
 - Motifs bitmap : table de pointeurs descendante `[$DFFA - 2*i]`, en-tête
   (largeur en octets, hauteur, mode) puis paires (couleur, forme) par cellule.
 - Écran : fenêtre `$4000-$5F3F`, deux banques commutées par bit 0 de `$E7C3`
-  (0 = couleur, 1 = forme). Octet couleur : forme = bits 0-2 + 7,
-  fond = bits 3-6, valeurs encodées matériel (= indice BASIC XOR 8).
+  (0 = couleur, 1 = forme). Octet couleur : **forme = bits 3-6,
+  fond = bits 0-2 + bit 7**, valeurs encodées matériel (= indice BASIC
+  XOR 8) — vérifié contre des captures d'écran du jeu original.
 
 Principaux opcodes : 00/01 origine (absolue/relative), 02/03/13 appel de
 sous-image (direct/indirect/saut), 04/05/06 retour et rendez-vous

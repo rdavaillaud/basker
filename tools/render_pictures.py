@@ -49,9 +49,13 @@ def hw_to_index(v4):
 
 
 def couleur_byte_split(byte):
-    """Octet couleur TO8 : forme = bits 0-2 + bit 7, fond = bits 3-6."""
-    forme = (byte & 0x07) | ((byte >> 4) & 0x08)
-    fond = (byte >> 3) & 0x0F
+    """Octet couleur TO8 : forme = bits 3-6, fond = bits 0-2 + bit 7.
+
+    (Vérifié contre des captures du jeu original : la lande a un sol
+    magenta orné de motifs noirs, pas l'inverse.)
+    """
+    forme = (byte >> 3) & 0x0F
+    fond = (byte & 0x07) | ((byte >> 4) & 0x08)
     return hw_to_index(forme), hw_to_index(fond)
 
 
@@ -71,9 +75,11 @@ class Renderer:
 
     # --- écran ---
     def clear_screen(self, fond=0):
+        hw = fond ^ 8
+        byte = (hw & 0x07) | ((hw & 0x08) << 4)
         for i in range(0x1F40):
             self.emu.video.forme[i] = 0
-            self.emu.video.couleur[i] = ((fond ^ 8) & 0x0F) << 3
+            self.emu.video.couleur[i] = byte
 
     # --- primitieves ROM ---
     def plot(self, x, y):
@@ -87,9 +93,8 @@ class Renderer:
             return
         self.emu.video.forme[off] |= bit
         color = self.emu.mem[0x6038] & 0x0F
-        hw = (color & 0x07) | ((color & 0x08) << 4)
         c = self.emu.video.couleur[off]
-        self.emu.video.couleur[off] = (c & 0x78) | hw
+        self.emu.video.couleur[off] = (c & 0x87) | (color << 3)
 
     def trap_point(self, emu):
         self.plot(self._s16(emu.x), self._s16(emu.y))

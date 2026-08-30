@@ -66,7 +66,10 @@ export class Intro {
     await say(19, 9, "N'y allez pas !");
 
     // lignes 76-78 : la réponse du jeune Baskerville, tapée à la machine
+    // (sur TO8 le redessin efface les textes ; notre couche texte est
+    // séparée, on l'efface donc explicitement)
     await this.play('T9L96PP');
+    scr.clearRows(0, 16);
     await this.pic(1);
     await this.pic(4);
     const w = "Non, cocher ! J'ai fait le voyage jusqu'ici pour me rendre compte de l'héritage de mon oncle, je ne peux plus reculer ! Je continue à pied.";
