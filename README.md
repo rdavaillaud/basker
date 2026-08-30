@@ -34,6 +34,8 @@ Documentation d'époque (éléments textuels) :
 ```
 web/
   index.html                         Le jeu (ES modules, aucune dépendance)
+  plan.html                          Plan des 40 lieux et de leurs liaisons
+  soluce.html                        Soluce complète (fins, étapes, télégramme)
   js/emu6809.js                      Émulateur 6809 (moteur graphique original)
   js/to8.js                          Écran TO8 (banques forme/couleur, texte 40 col)
   js/pictures.js                     Chargement des binaires + EXECJ/EXECK

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soluce — Le Trésor des Baskerville</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/soluce.css">
+</head>
+<body>
+  <main class="soluce-page">
+    <header class="sol-head">
+      <div class="eyebrow">Le Trésor des Baskerville · CHIP 1987 · Thomson TO8</div>
+      <h1>La Route du Trésor</h1>
+      <p class="lede">Le schéma de solution complet, reconstruit depuis la
+        logique décodée du jeu (<code>LOCH7.BAS</code>) : le fil qui mène à la
+        vraie fin, les variantes du télégramme, et les morts à éviter.</p>
+      <p class="nav-links">
+        <a href="index.html">← Retour au jeu</a> ·
+        <a href="plan.html">Voir le plan des 40 lieux</a>
+      </p>
+      <p><span class="spoiler">⚠ SPOILERS INTÉGRAUX</span></p>
+    </header>
+
+    <h2>Les fins possibles</h2>
+    <div class="fins">
+      <div class="fin or">
+        <h3>La fin parfaite <span class="tag">★ OR</span></h3>
+        <p>Donner la <b>couronne</b> (du toc !) à Murdock en gardant le trésor,
+          avec le dossier de Scotland Yard en poche. Télégramme : l'oncle est
+          sauf, les Vandeleur en prison, et Alexander vous envoie une cornemuse
+          en cadeau.</p>
+      </div>
+      <div class="fin demi">
+        <h3>La fin victorieuse, trésor sacrifié <span class="tag">VICTOIRE</span></h3>
+        <p>Donner le <b>trésor</b> à Murdock. L'oncle est sauvé, mais le
+          télégramme le regrette : « Tu aurais pu sauver trésor-STOP ».</p>
+      </div>
+      <div class="fin neutre">
+        <h3>L'abandon <span class="tag">TÉLÉGRAMME</span></h3>
+        <p>Sortir par le sud de la lande et répondre OUI. Retour en France :
+          « Décès oncle non prouvé-STOP. Héritage bloqué-STOP », agrémenté
+          selon ce que vous transportez.</p>
+      </div>
+      <div class="fin mort">
+        <h3>Les cinq morts <span class="tag">GAME OVER</span></h3>
+        <p>Long Silver au sous-sol · noyade dans les marais de Grimpen ·
+          Nessie au milieu du lac · le coup de poing fatal de Murdock · le
+          coup de fusil de Léon Vandeleur si l'on s'attarde chez lui
+          (« TROP TARD »).</p>
+      </div>
+    </div>
+
+    <h2>Le fil de la solution</h2>
+    <div class="fil">
+
+      <div class="etape">
+        <span class="num">1</span>
+        <h3>Piller le manoir <span class="lieu">— hall, salon, chambres</span></h3>
+        <ul>
+          <li>Au hall : <kbd><b>PRE</b>NDS CHANDELIER</kbd>.</li>
+          <li>Au pied de l'escalier : <kbd><b>OUV</b>RE TIROIR</kbd> puis
+            <kbd><b>PRE</b>NDS ALLUMETTE</kbd>.</li>
+          <li>Monter à l'étage : les Vandeleur s'enfuient par le passage secret
+            — ils y perdent une <b>clé</b> et une <b>chaussure</b>.</li>
+          <li>Chambre d'ami : <kbd><b>PRE</b>NDS KILT</kbd>.</li>
+          <li>Au salon : <kbd><b>PRE</b>NDS LIVRE</kbd>,
+            <kbd><b>LIS</b> LIVRE</kbd> (l'indice de la toison), et
+            <kbd><b>ACT</b>IONNE LAMPE</kbd> — la bibliothèque pivote vers le
+            passage secret.</li>
+        </ul>
+      </div>
+
+      <div class="etape">
+        <span class="num">2</span>
+        <h3>La visite aux voisins <span class="lieu">— petite maison de la prairie</span></h3>
+        <p>Chez Léon Vandeleur (<kbd><b>ENT</b>RE</kbd> depuis la maison de la
+          prairie) : la scène vous offre l'<b>appeau à coq</b> de l'oncle, puis
+          Léon vous jette dehors — « SORS D'ICI, CRAPULE !.. Et arrêtes de
+          sourire à ma femme... »</p>
+        <div class="danger"><b>Sortez immédiatement</b>
+          (<kbd><b>SOR</b>S</kbd> ou flèche bas) : toute autre action et Léon,
+          jaloux, vous abat — « TROP TARD ».</div>
+      </div>
+
+      <div class="etape">
+        <span class="num">3</span>
+        <h3>Le coq et le chien <span class="lieu">— golf, cimetière, lande, sous-sol</span></h3>
+        <ul>
+          <li>Terrain de golf : <kbd><b>PRE</b>NDS CANNE</kbd> — votre pied de
+            biche.</li>
+          <li>À la chapelle, le révérend Mac Mitchum vous attend ; au cimetière :
+            <kbd><b>OUV</b>RE CERCUEIL</kbd> (avec la canne) — il est vide, à
+            part un <b>fusil de chasse</b> : <kbd><b>PRE</b>NDS FUSIL</kbd>.</li>
+          <li>Sur la lande (au nord du square) : <kbd><b>JOU</b>E APPEAU</kbd> —
+            un coq de bruyère surgit du bourbier — puis
+            <kbd><b>ACT</b>IONNE FUSIL</kbd> et <kbd><b>PRE</b>NDS COQ</kbd>.</li>
+          <li>Au sous-sol du manoir : <kbd><b>DON</b>NE COQ</kbd> à Long Silver
+            (MIAM…SLURP), puis <kbd><b>EMM</b>ENE CHIEN</kbd> — il vous
+            adopte.</li>
+        </ul>
+        <div class="danger"><b>Long Silver a faim :</b> avant de le nourrir,
+          une action de trop au sous-sol et il vous égorge. On peut regarder,
+          remonter — rien d'autre.</div>
+      </div>
+
+      <div class="etape">
+        <span class="num">4</span>
+        <h3>L'enquête <span class="lieu">— presbytère, retour chez les Vandeleur</span></h3>
+        <ul>
+          <li>Le presbytère s'ouvre désormais : <kbd><b>OUV</b>RE TIROIR</kbd>,
+            <kbd><b>PRE</b>NDS DOSSIER</kbd> — Scotland Yard traque « Les
+            Postiches », un couple de cambrioleurs français…</li>
+          <li>Chez les Vandeleur, partis précipitamment :
+            <kbd><b>PRE</b>NDS ENVELOPPE</kbd> et <kbd><b>LIS</b> LETTRE</kbd> —
+            elle révèle le <b>chenet du sous-sol</b> et la <b>trappe de la
+            salle des trophées</b>, où croupit « le vieux sanglier ».</li>
+        </ul>
+      </div>
+
+      <div class="etape">
+        <span class="num">5</span>
+        <h3>Couronne et trésor <span class="lieu">— chambres, passage secret, sous-sol</span></h3>
+        <ul>
+          <li>Chambre d'Alexander : <kbd><b>TIR</b>E POMPON</kbd> — le panneau
+            s'ouvre sur le passage : <kbd><b>PRE</b>NDS CLE</kbd>.</li>
+          <li>Chambre de Charles-Édouard : <kbd><b>OUV</b>RE COFFRE</kbd> (la
+            clé) puis <kbd><b>PRE</b>NDS COURONNE</kbd>.
+            <kbd><b>REG</b>ARDE COURONNE</kbd> l'avoue : « C'est du toc!!! »</li>
+          <li>Sous-sol : <kbd><b>ACT</b>IONNE CHENET</kbd> — un coffre-fort
+            apparaît — <kbd><b>OUV</b>RE COFFRE-FORT</kbd> puis
+            <kbd><b>PRE</b>NDS TRESOR</kbd> : le trésor de Charles-Édouard !</li>
+        </ul>
+      </div>
+
+      <div class="etape">
+        <span class="num">6</span>
+        <h3>Délivrer l'oncle <span class="lieu">— salle des trophées, souterrain</span></h3>
+        <ul>
+          <li><kbd><b>GRA</b>TTE ALLUMETTE</kbd> puis
+            <kbd><b>ALL</b>UME CHANDELIER</kbd> — sans lumière, le souterrain
+            est un mur d'obscurité.</li>
+          <li>Salle des trophées : <kbd><b>JOU</b>E APPEAU</kbd> — la trappe
+            s'ouvre. Descendre jusqu'à la geôle : Alexander est vivant, enfermé
+            par les Vandeleur depuis un mois ! Il dépose un <b>message</b> au
+            manoir en rentrant.</li>
+        </ul>
+      </div>
+
+      <div class="etape">
+        <span class="num">7</span>
+        <h3>Le rendez-vous de Murdock <span class="lieu">— hall, puis l'embarcadère ouest</span></h3>
+        <ul>
+          <li>Au hall : <kbd><b>PRE</b>NDS ENVELOPPE</kbd>,
+            <kbd><b>LIS</b> MESSAGE</kbd> — le cocher-fantôme Murdock exige le
+            trésor à l'embarcadère, sinon l'oncle mourra « pour de bon ».</li>
+          <li>Nessie bloque désormais le lac : allez-y <b>à pied par la
+            lande</b> (plein ouest depuis le point de départ).</li>
+          <li>Face à Murdock : <kbd><b>DON</b>NE COURONNE</kbd> — il empoche le
+            toc, vous gardez le trésor. « Allez au diable, Chiens de
+            Baskerville ! » — <b>FIN</b>, cornemuse et télégramme triomphal.</li>
+        </ul>
+        <div class="danger"><b>Ne venez jamais les mains vides :</b> sans
+          couronne ni trésor sur vous, Murdock frappe… trop fort.</div>
+      </div>
+    </div>
+
+    <h2>Le télégramme final, ligne à ligne</h2>
+    <div class="telegramme">
+      <div class="t-head">TELEGRAMME : Inverness-24/12/90- · #ERNEST APPLECAKE#</div>
+      <table>
+        <tr><td>Décès oncle non prouvé-STOP<br>Héritage bloqué-STOP</td>
+            <td class="cond">si la partie s'achève sans sauver l'oncle (abandon, ou fin sans rendez-vous)</td></tr>
+        <tr><td>Couronne expertisée sans valeur-STOP</td>
+            <td class="cond">si vous rentrez avec la couronne mais sans le trésor</td></tr>
+        <tr><td>Couple prison grâce dossier-STOP</td>
+            <td class="cond">si le dossier de Scotland Yard est dans votre poche — dans toutes les fins</td></tr>
+        <tr><td>Alexander bonne santé-STOP<br>Chasse avec voisin et Long Silver-STOP</td>
+            <td class="cond">fin victorieuse (l'oncle est sauvé)</td></tr>
+        <tr><td>Tu aurais pu sauver trésor-STOP</td>
+            <td class="cond">victoire en ayant donné le trésor à Murdock</td></tr>
+        <tr><td>Il t'envoie cadeau cornemuse-STOP</td>
+            <td class="cond">victoire en ayant donné la couronne — la fin parfaite</td></tr>
+      </table>
+    </div>
+
+    <h2>Détours et pièges</h2>
+    <div class="note"><b>La toison du berger (facultatif) :</b> avec le kilt
+      sur vous (<kbd><b>ENF</b>ILE KILT</kbd>), le berger de la prairie vous
+      salue d'un « GOOD BOY BASKERVILLE » et offre son mouton :
+      <kbd><b>ENF</b>ILE TOISON</kbd>. Elle protège de Nessie pour revenir en
+      barque de la rive de Murdock — inutile si vous faites le trajet final à
+      pied.</div>
+    <div class="danger"><b>Les marais de Grimpen</b> (au nord de la lande et à
+      l'est du square) noient sans sommation : « GLUPS ». Une seule direction
+      en ressort — celle d'où l'on vient.</div>
+    <div class="danger"><b>Le lac :</b> la traversée aller (embarcadère du
+      village, <kbd><b>RAM</b>E</kbd>) est toujours sûre ; le retour depuis la
+      rive de Murdock exige la toison. À partir du message de Murdock, Nessie
+      bloque tout le monde.</div>
+    <div class="note"><b>L'allumette se consume :</b> une fois grattée, elle
+      brûle en quelques actions (« AIE! ») ; grattez-la juste avant d'allumer
+      le chandelier.</div>
+
+    <p class="footer">Solution établie par lecture du code décodé de
+      <code>LOCH7.BAS</code> — projet de préservation du jeu © CHIP 1987
+      (André Rocques &amp; Paul Duplierto).</p>
+  </main>
+</body>
+</html>
