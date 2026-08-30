@@ -138,6 +138,8 @@ def read_catalog(img):
 
 
 def read_file(img, fat, first_block, last_bytes):
+    # Chaque secteur de 256 octets ne porte que 255 octets utiles : le
+    # dernier octet est réservé par le DOS Thomson (toujours 0x00 ici).
     out = b""
     b = first_block
     while True:
@@ -146,12 +148,12 @@ def read_file(img, fat, first_block, last_bytes):
         start = 1 if b % 2 == 0 else 9
         if nxt <= 0xBF:  # bloc plein, la chaîne continue
             for s in range(start, start + 8):
-                out += read_sector(img, track, s)
+                out += read_sector(img, track, s)[:255]
             b = nxt
         elif 0xC1 <= nxt <= 0xC8:  # dernier bloc, n secteurs utilisés
             n = nxt - 0xC0
             for s in range(start, start + n - 1):
-                out += read_sector(img, track, s)
+                out += read_sector(img, track, s)[:255]
             out += read_sector(img, track, start + n - 1)[:last_bytes]
             return out
         else:

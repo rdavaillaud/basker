@@ -212,3 +212,44 @@ Voir `data/game-data.json` pour la table exacte. En résumé :
 - **23-32** : la lande, les abords du manoir, le square, le terrain de golf ;
 - **33-40** : le Loch Ness, les petites maisons de la prairie (Vandeleur,
   berger), l'embarcadère, les rives du lac.
+
+## 7. Le moteur graphique (PLAN7.BIN + MOCH7.BIN)
+
+Les dessins sont des **flux d'opcodes** interprétés par le code 6809 de
+PLAN7.BIN. Entrées : `J=$AC9F` (EXECJ : initialise l'image n° `PEEK($A749)`
+et exécute un pas), `K=$ACB4` (EXECK : un pas d'animation). Le pas courant
+tourne jusqu'à un opcode de rendez-vous (`06`/`04`), ce qui permet les
+animations rythmées par les boucles `EXECK` du BASIC.
+
+- Table des images : pointeurs 16 bits en `$B279` (indexée par 2×n, +1 octet
+  d'en-tête sauté) — fournie par MOCH7.BIN pour le jeu, par PLAN7 lui-même
+  pour l'intro (motifs dans DEPI7.DCL).
+- Pile d'appels de sous-images : `$A75E` descendant, vide à `$A760`.
+- Table des vecteurs d'opcodes : `$A800` (48 opcodes 00-2F).
+- Motifs bitmap : table de pointeurs descendante `[$DFFA - 2*i]`, en-tête
+  (largeur en octets, hauteur, mode) puis paires (couleur, forme) par cellule.
+- Écran : fenêtre `$4000-$5F3F`, deux banques commutées par bit 0 de `$E7C3`
+  (0 = couleur, 1 = forme). Octet couleur : forme = bits 0-2 + 7,
+  fond = bits 3-6, valeurs encodées matériel (= indice BASIC XOR 8).
+
+Principaux opcodes : 00/01 origine (absolue/relative), 02/03/13 appel de
+sous-image (direct/indirect/saut), 04/05/06 retour et rendez-vous
+d'animation, 07/08/09 modes OR/XOR/opaque (auto-modification du code !),
+0A-0D dessin de motif (option couleur forcée, option fenêtre à fond
+sauvegardé), 0E/0F/19/1A idem en miroir, 10 remplissage forme, 11
+restauration de fenêtre, 12 effacement, 14-17 sprites repositionnables,
+18 effacement à l'ancienne position, 1B/1C tempo, 1D-22 POKE/INC/DEC 8/16
+bits (auto-modification des variables moteur), 23/24 boucles, 25/26
+descripteurs de fenêtres, 27 vitesse d'animation, 28/29 rectangles de
+couleur (fond/forme), 2A/2B point (ROM `$E80F`), 2C/2D segment relatif
+8/16 bits (ROM `$E80C`), 2E couleur de tracé (`$6038`) ou gomme
+(`$10`/`$11` → bit 4 de `$6019`), 2F page des POKE.
+
+`tools/emu6809.py` + `tools/render_pictures.py` émulent fidèlement ce moteur
+(CPU 6809 + vidéo TO8 + traps ROM) et produisent des PNG de contrôle.
+
+### Correction importante : secteurs de 255 octets
+
+Chaque secteur de 256 octets du `.fd` ne contient que **255 octets utiles**
+(le dernier octet est réservé par le DOS Thomson). Sans cette correction,
+les fichiers extraits contiennent un octet parasite tous les 255 octets.

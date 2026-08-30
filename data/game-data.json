@@ -927,9 +927,9 @@
       "image": 123,
       "sorties": {
         "haut (nord)": 41,
-        "bas (sud)": 215,
-        "droite (est)": 41,
-        "gauche (ouest)": 21
+        "bas (sud)": 41,
+        "droite (est)": 21,
+        "gauche (ouest)": 41
       }
     },
     {
@@ -939,8 +939,8 @@
       "sorties": {
         "haut (nord)": 41,
         "bas (sud)": 41,
-        "droite (est)": 41,
-        "gauche (ouest)": 33
+        "droite (est)": 33,
+        "gauche (ouest)": 22
       }
     },
     {
@@ -948,10 +948,10 @@
       "nom": "A l'embarcadère (côté Murdock)",
       "image": 118,
       "sorties": {
-        "haut (nord)": 22,
-        "bas (sud)": 39,
-        "droite (est)": 41,
-        "gauche (ouest)": 23
+        "haut (nord)": 39,
+        "bas (sud)": 41,
+        "droite (est)": 23,
+        "gauche (ouest)": 33
       }
     },
     {
@@ -959,10 +959,10 @@
       "nom": "Sur une rive du Loch Ness",
       "image": 120,
       "sorties": {
-        "haut (nord)": 33,
-        "bas (sud)": 40,
-        "droite (est)": 38,
-        "gauche (ouest)": 25
+        "haut (nord)": 40,
+        "bas (sud)": 38,
+        "droite (est)": 25,
+        "gauche (ouest)": 41
       }
     },
     {
@@ -971,9 +971,9 @@
       "image": 121,
       "sorties": {
         "haut (nord)": 41,
-        "bas (sud)": 41,
-        "droite (est)": 39,
-        "gauche (ouest)": 26
+        "bas (sud)": 39,
+        "droite (est)": 26,
+        "gauche (ouest)": 41
       }
     }
   ]
