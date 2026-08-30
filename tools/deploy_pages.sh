@@ -19,6 +19,14 @@ for f in index.html plan.html; do
   sed -i "s|</main>|<p class=\"footer\">version $STAMP</p></main>|" "$f"
 done
 
+# estampille aussi les imports entre modules et les fetch de données, sinon
+# un navigateur peut mêler HTML frais et modules en cache
+for f in js/*.js; do
+  sed -i -E "s|from '\./([A-Za-z0-9_]+\.js)'|from './\1?v=$STAMP'|g" "$f"
+  sed -i -E "s|fetch\('data/([^']+)'\)|fetch('data/\1?v=$STAMP')|g" "$f"
+  sed -i "s|\${baseUrl}/\${n}\`|\${baseUrl}/\${n}?v=$STAMP\`|g" "$f"
+done
+
 git add -A
 git commit -q -m "$MSG (version $STAMP)
 
