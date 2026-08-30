@@ -195,13 +195,13 @@ export class Game {
 
   async gosub97() {                                   // GOSUB97 : efface la ligne du nom
     this.scr.clearRow(16);
-    this.color(null, 0);
+    // (fond conservé : sur le TO8 la console reste lisible sur fond blanc)
     this.locate(0, 24);
   }
 
   // ---------- scène Vandeleur (GOSUB42-45) ----------
   async vandeleurScene() {
-    this.color(0, 0);
+    this.color(0, 7);
     await this.pic(135);
     this.locate(0, 24);
     this.print('Je me présente Léon Vandeleur zoologisteet écrivain français...');
@@ -1053,7 +1053,7 @@ export class Game {
       this.showName();                               // 1020
       if (tele !== undefined && tele !== null && tele < 0) { A = Math.abs(tele); continue; }
       this.locate(0, 24);
-      this.color(0, 0);
+      this.color(0, 7);
       await this.remarks();
       return;
     }
@@ -1181,7 +1181,7 @@ export class Game {
           this.N[32] = 1;
           await this.pic(126);
           this.locate(0, 24);
-          this.color(0, 0);
+          this.color(0, 7);
           await this.reverend();
           await this.waitKey();
           await this.pic(2);
@@ -1238,7 +1238,7 @@ export class Game {
   async unclePrison() {                              // 856-858
     this.W = 'HELLO!TONTON ALEXANDER!';
     this.showName();
-    this.color(0, 0);
+    this.color(0, 7);
     await this.pic(136);
     this.locate(0, 24);
     this.print('ENFIN!Te voilà neveu!C\'est pas trop tôt!Ca fait un mois que j\'ai été enfermé icipar ces escrocs de Vandeleur.');
@@ -1287,7 +1287,7 @@ export class Game {
       await this.pic(115);
       await this.pause29();
       this.locate(0, 24);
-      this.color(0, 0);
+      this.color(0, 7);
       await this.pic(4);
       await this.pic(116);
     } else return;
@@ -1322,7 +1322,7 @@ export class Game {
     if (this.D1 !== 5) return;
     await this.pic(155);
     this.locate(0, 24);
-    this.color(0, 0);
+    this.color(0, 7);
     this.print('WELCOME!Je suis le cocher Murdock, aliasle fantôme. Grâce à une indiscrétion du notaire, j\'ai appris que votre oncle    détenais un trésor.');
     await this.waitKey();
     this.print('Alors petit, envoies la couronne sinon  Tonton Alexander risque de mourir pour  de bon!..');

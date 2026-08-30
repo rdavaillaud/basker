@@ -34,8 +34,17 @@ class Input {
     }
     if (code === null) return;
     e.preventDefault();
+    this.push(code);
+  }
+
+  push(code) {
+    if (code === 27) this.skip = true;   // Échap / bouton « passer l'intro »
     if (this.waiter) { const w = this.waiter; this.waiter = null; w(code); }
     else this.queue.push(code);
+  }
+
+  pushWord(word) {
+    for (const ch of word.slice(0, 3).toUpperCase()) this.push(ch.charCodeAt(0));
   }
 
   getKey() {
@@ -47,22 +56,23 @@ class Input {
   consumeSkip() { const s = this.skip; this.skip = false; return s; }
 }
 
-// ---------- panneau d'aide ----------
-function setupAide(data) {
+// ---------- panneau d'aide (les mots sont tappables : ils tapent leurs
+// 3 premières lettres, comme au clavier) ----------
+function setupAide(data, input) {
   const aide = document.getElementById('aide');
   const btn = document.getElementById('btn-aide');
   const verbes = document.getElementById('aide-verbes');
   const noms = document.getElementById('aide-noms');
+  const addWord = (ul, mot, extra = '') => {
+    const li = document.createElement('li');
+    li.innerHTML = `<b>${mot.slice(0, 3)}</b>${mot.slice(3)}${extra}`;
+    li.addEventListener('click', () => input.pushWord(mot));
+    ul.appendChild(li);
+  };
   for (const v of data.verbes) {
-    const li = document.createElement('li');
-    li.innerHTML = `<b>${v.mot.slice(0, 3)}</b>${v.mot.slice(3)}${v.sans_complement ? ' <span class="seul">•</span>' : ''}`;
-    verbes.appendChild(li);
+    addWord(verbes, v.mot, v.sans_complement ? ' <span class="seul">•</span>' : '');
   }
-  for (const n of data.noms) {
-    const li = document.createElement('li');
-    li.innerHTML = `<b>${n.mot.slice(0, 3)}</b>${n.mot.slice(3)}`;
-    noms.appendChild(li);
-  }
+  for (const n of data.noms) addWord(noms, n.mot);
   const toggle = () => {
     aide.hidden = !aide.hidden;
     btn.classList.toggle('active', !aide.hidden);
@@ -71,6 +81,25 @@ function setupAide(data) {
   window.addEventListener('keydown', e => {
     if (e.key === 'F1') { e.preventDefault(); toggle(); }
   });
+  return toggle;
+}
+
+// ---------- commandes tactiles (mobile) ----------
+function setupTouch(input, toggleAide) {
+  const touch = document.getElementById('touch');
+  const mobile = (matchMedia('(pointer: coarse)').matches && navigator.maxTouchPoints > 0)
+    || matchMedia('(max-width: 720px)').matches;
+  if (!mobile) return;
+  touch.hidden = false;
+  document.body.classList.add('mobile');
+  for (const b of touch.querySelectorAll('button[data-k]')) {
+    b.addEventListener('click', e => {
+      e.preventDefault();
+      input.push(parseInt(b.dataset.k, 10));
+    });
+  }
+  // sur mobile, l'aide (qui sert de pavé de commandes) s'ouvre d'office
+  toggleAide();
 }
 
 // ---------- boot ----------
@@ -92,7 +121,8 @@ async function boot() {
   ]);
   status.textContent = '';
   overlay.querySelector('button').disabled = false;
-  setupAide(data);
+  const toggleAide = setupAide(data, input);
+  setupTouch(input, toggleAide);
 
   // rendu continu + clignotement curseur
   setInterval(() => { screen.cursor.blink = !screen.cursor.blink; screen.dirty = true; }, 400);

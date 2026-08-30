@@ -134,6 +134,93 @@ h1 {
   #aide { width: min(640px, calc(100vw - 60px)); max-height: none; }
 }
 
+/* ---------- commandes tactiles ---------- */
+#touch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  flex-basis: 100%;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#touch .pad {
+  display: grid;
+  grid-template-areas: '. up .' 'left down right';
+  gap: 6px;
+}
+
+#touch .pad .up { grid-area: up; }
+#touch .pad .down { grid-area: down; }
+#touch .pad .left { grid-area: left; }
+#touch .pad .right { grid-area: right; }
+
+#touch button {
+  font-family: inherit;
+  font-size: 1.05rem;
+  min-width: 54px;
+  min-height: 48px;
+  color: #d8d8e8;
+  background: #1c2237;
+  border: 1px solid #4a3a26;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#touch button:active {
+  background: #c8a548;
+  color: #0a0d18;
+}
+
+#touch .keys {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+}
+
+#touch .keys .wide {
+  font-size: .85rem;
+  letter-spacing: 2px;
+}
+
+#touch .minis {
+  display: flex;
+  gap: 6px;
+}
+
+#touch .minis button {
+  min-width: 44px;
+  flex: 1;
+}
+
+#touch .hint {
+  margin: 2px 0 0;
+  font-size: .7rem;
+  color: #9aa0b8;
+}
+
+body.mobile #aide ul.words li {
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+#aide ul.words li { cursor: pointer; }
+#aide ul.words li:hover b { text-decoration: underline; }
+
+@media (max-width: 720px) {
+  main { padding: 10px 6px 30px; }
+  h1 { font-size: 1.3rem; }
+  .subtitle { font-size: .72rem; }
+  .frame { border-width: 6px; border-radius: 8px; }
+  canvas { width: calc(100vw - 26px); }
+  .toolbar { max-width: none; justify-content: center; }
+  #aide { font-size: .85rem; }
+  #aide ul.words { font-size: .85rem; }
+}
+
 .frame {
   position: relative;
   display: inline-block;
