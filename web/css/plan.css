@@ -1,6 +1,10 @@
 .plan-page {
-  max-width: none;
-  padding: 24px 20px 60px;
+  /* enfant flex : sans min-width:0 il s'élargirait à la taille de la carte
+     et déborderait des deux côtés (la partie gauche devient inatteignable) */
+  width: 100%;
+  max-width: 1400px;
+  min-width: 0;
+  padding: 24px 12px 60px;
 }
 
 .plan-page .subtitle a { color: #a8b4dd; }
@@ -30,6 +34,7 @@
 
 #carte-box {
   overflow: auto;
+  width: 100%;
   max-width: 100%;
   max-height: 78vh;
   margin: 0 auto;

@@ -224,6 +224,13 @@ async function main() {
     }
   }
 
+  // cadrage initial : on ouvre la vue sur le lieu de départ du jeu (24),
+  // sinon la fenêtre s'ouvre sur un coin vide de la carte
+  const box = document.getElementById('carte-box');
+  const [dx, dy] = center(24);
+  box.scrollLeft = Math.max(0, dx - box.clientWidth / 2);
+  box.scrollTop = Math.max(0, dy - box.clientHeight / 2);
+
   // miniatures : rendu séquentiel par le moteur émulé
   const { emu, pics } = makeRenderer(bins);
   for (const room of rooms) {
