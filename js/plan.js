@@ -2,8 +2,8 @@
 // data/game-data.json (table des déplacements décodée), avec la miniature
 // de chaque lieu dessinée par le moteur graphique 6809 émulé.
 
-import { Emu6809 } from './emu6809.js';
-import { PictureEngine } from './pictures.js';
+import { Emu6809 } from './emu6809.js?v=20260830-1631-4a41c57';
+import { PictureEngine } from './pictures.js?v=20260830-1631-4a41c57';
 
 // Position (colonne, ligne) de chaque lieu, calée sur les directions de la
 // table des déplacements : nord = haut, sud = bas, est = droite, ouest =
@@ -111,7 +111,7 @@ function snapshot(emu, canvas) {
 async function main() {
   const [bins, data] = await Promise.all([
     PictureEngine.loadData('data'),
-    fetch('data/game-data.json').then(r => r.json()),
+    fetch('data/game-data.json?v=20260830-1631-4a41c57').then(r => r.json()),
   ]);
   const rooms = data.lieux;
 
