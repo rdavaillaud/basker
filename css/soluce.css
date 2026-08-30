@@ -1,0 +1,217 @@
+/* Page soluce : mise en page éditoriale, lisible sur mobile comme sur
+   grand écran. Reprend la palette du site (cadre doré, lande magenta). */
+
+.soluce-page {
+  max-width: 720px;
+  width: 100%;
+  min-width: 0;          /* sinon le tableau du télégramme pousse le flex */
+  text-align: left;
+  padding-bottom: 60px;
+}
+
+.sol-head .eyebrow {
+  font-size: .68rem;
+  letter-spacing: 2px;
+  color: #d066cf;
+  text-transform: uppercase;
+}
+
+.soluce-page h1 {
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  margin: 8px 0 10px;
+  text-align: left;
+  text-wrap: balance;
+}
+
+.soluce-page .lede {
+  color: #a9a795;
+  margin: 0 0 12px;
+  max-width: 60ch;
+}
+
+.soluce-page .lede code,
+.soluce-page .footer code {
+  font-family: 'Courier New', monospace;
+  font-size: .85em;
+  color: #a8b4dd;
+}
+
+.nav-links { font-size: .85rem; margin: 0 0 10px; }
+.nav-links a { color: #a8b4dd; }
+
+.spoiler {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: .72rem;
+  letter-spacing: 1px;
+  color: #e06055;
+  border: 1px solid #e06055;
+  border-radius: 3px;
+  padding: 3px 10px;
+}
+
+.soluce-page h2 {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #e8c86a;
+  margin: 44px 0 16px;
+  text-transform: uppercase;
+}
+
+.soluce-page h2::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin-top: 6px;
+  background: #d066cf;
+}
+
+/* ---- cartes des fins ---- */
+.fins { display: grid; gap: 12px; }
+
+.fin {
+  border: 1px solid #35406e;
+  border-left: 4px solid #a9a795;
+  border-radius: 6px;
+  background: #1c2038;
+  padding: 12px 16px;
+}
+
+.fin h3 {
+  margin: 0 0 4px;
+  font-size: .95rem;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.fin p { margin: 0; color: #a9a795; font-size: .88rem; }
+
+.fin .tag {
+  font-family: 'Courier New', monospace;
+  font-size: .68rem;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  color: #14172a;
+}
+
+.fin.or { border-left-color: #e8c86a; }
+.fin.or .tag { background: #e8c86a; }
+.fin.demi { border-left-color: #6fc47c; }
+.fin.demi .tag { background: #6fc47c; }
+.fin.neutre .tag { background: #a9a795; }
+.fin.mort { border-left-color: #e06055; }
+.fin.mort .tag { background: #e06055; }
+
+/* ---- fil des étapes ---- */
+.fil { position: relative; padding-left: 44px; }
+
+.fil::before {
+  content: '';
+  position: absolute;
+  left: 15px; top: 10px; bottom: 10px;
+  width: 2px;
+  background: #35406e;
+}
+
+.etape { position: relative; margin-bottom: 30px; }
+.etape:last-child { margin-bottom: 0; }
+
+.num {
+  position: absolute;
+  left: -44px; top: 0;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: #232848;
+  border: 2px solid #d066cf;
+  color: #e9e4d4;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.etape h3 {
+  margin: 4px 0 8px;
+  font-size: 1.05rem;
+  color: #e8c86a;
+}
+
+.etape h3 .lieu {
+  color: #a9a795;
+  font-weight: normal;
+  font-size: .82rem;
+}
+
+.etape p { margin: 0 0 8px; }
+.etape ul { margin: 0 0 8px; padding-left: 20px; }
+.etape li { margin-bottom: 6px; }
+
+kbd {
+  font-family: 'Courier New', monospace;
+  font-size: .82rem;
+  background: #0d101f;
+  color: #7fe3e0;
+  border-radius: 4px;
+  padding: 1px 7px 2px;
+  white-space: nowrap;
+}
+
+kbd b { color: #e8c86a; }
+
+.note, .danger {
+  background: #1c2038;
+  border-radius: 0 6px 6px 0;
+  padding: 9px 14px;
+  font-size: .87rem;
+  color: #a9a795;
+  margin: 8px 0;
+}
+
+.note { border-left: 3px solid #e8c86a; }
+.danger { border-left: 3px solid #e06055; }
+.note b, .danger b { color: #e9e4d4; }
+
+/* ---- télégramme ---- */
+.telegramme {
+  background: #1c2038;
+  border: 1px dashed #35406e;
+  border-radius: 6px;
+  padding: 16px 18px;
+  font-family: 'Courier New', monospace;
+  font-size: .82rem;
+  overflow-x: auto;
+}
+
+.telegramme .t-head { color: #d066cf; margin-bottom: 10px; }
+.telegramme table { border-collapse: collapse; width: 100%; min-width: 420px; }
+
+.telegramme td {
+  padding: 5px 12px 5px 0;
+  vertical-align: top;
+  border-bottom: 1px solid #35406e;
+}
+
+.telegramme tr:last-child td { border-bottom: none; }
+
+.telegramme .cond {
+  color: #a9a795;
+  font-family: Georgia, serif;
+  font-size: .82rem;
+}
+
+.soluce-page .footer {
+  margin-top: 46px;
+  border-top: 1px solid #35406e;
+  padding-top: 14px;
+  text-align: left;
+}
+
+@media (max-width: 720px) {
+  .soluce-page { padding-left: 14px; padding-right: 14px; }
+  .fil { padding-left: 38px; }
+  .num { left: -38px; width: 28px; height: 28px; font-size: .85rem; }
+}

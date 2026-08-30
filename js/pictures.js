@@ -31,7 +31,7 @@ export class PictureEngine {
   static async loadData(baseUrl) {
     const names = ['PLAN7.BIN', 'TOCH7.BIN', 'MOCH7.BIN', 'DEPI7.DCL'];
     const bins = {};
-    await Promise.all(names.map(async n => { bins[n] = await fetchBin(`${baseUrl}/${n}?v=20260830-1639-5f5ccec`); }));
+    await Promise.all(names.map(async n => { bins[n] = await fetchBin(`${baseUrl}/${n}?v=20260830-1648-4531a8e`); }));
     return bins;
   }
 
