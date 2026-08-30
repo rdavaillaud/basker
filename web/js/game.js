@@ -241,7 +241,9 @@ export class Game {
   }
 
   async neighborScene() {                             // GOSUB52
-    this.color(0);
+    // COLOR0 sans second argument héritait du fond noir posé par le nom
+    // du lieu : on force noir sur blanc pour rester lisible
+    this.color(0, 7);
     await this.pause29();
     await this.pic(96);
     await this.pic(134);
