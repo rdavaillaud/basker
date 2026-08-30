@@ -17,6 +17,8 @@ class Input {
   }
 
   onKey(e) {
+    // le champ texte mobile gère lui-même sa saisie
+    if (e.target && e.target.tagName === 'INPUT') return;
     let code = null;
     switch (e.key) {
       case 'ArrowLeft': code = 8; break;
@@ -98,19 +100,25 @@ function setupTouch(input, data) {
       input.push(parseInt(b.dataset.k, 10));
     });
   }
-  // pastilles verbes / noms : un appui tape les 3 premières lettres
-  const fill = (id, words) => {
-    const box = document.getElementById(id);
-    for (const mot of words) {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.innerHTML = `<b>${mot.slice(0, 3)}</b>${mot.slice(3)}`;
-      b.addEventListener('click', e => { e.preventDefault(); input.pushWord(mot); });
-      box.appendChild(b);
+  // champ texte : la saisie passe au jeu lettre à lettre, le champ reste
+  // vide (l'écho se fait sur l'écran du jeu, comme sur TO8)
+  const field = document.getElementById('champ');
+  field.addEventListener('input', () => {
+    const v = field.value;
+    field.value = '';
+    for (const ch of v.toUpperCase()) {
+      const c = ch.charCodeAt(0);
+      if ((c >= 65 && c <= 90) || (c >= 48 && c <= 57)) input.push(c);
     }
-  };
-  fill('chips-verbes', data.verbes.map(v => v.mot));
-  fill('chips-noms', data.noms.map(n => n.mot));
+  });
+  field.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); input.push(13); }
+    else if (e.key === 'Backspace' && field.value === '') { e.preventDefault(); input.push(29); }
+  });
+  document.getElementById('champ-form').addEventListener('submit', e => {
+    e.preventDefault();
+    input.push(13);
+  });
 }
 
 // ---------- boot ----------

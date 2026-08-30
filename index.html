@@ -33,31 +33,26 @@
         </div>
       </div>
       <div id="touch" hidden>
-        <div class="bar">
-          <div class="pad">
-            <button data-k="11" class="up">▲</button>
-            <button data-k="8" class="left">◀</button>
-            <button data-k="10" class="down">▼</button>
-            <button data-k="9" class="right">▶</button>
-          </div>
-          <div class="keys">
-            <button data-k="13" class="wide ok">ENTRÉE ⏎</button>
-            <div class="minis">
-              <button data-k="29">⌫ EFF</button>
-              <button data-k="27">⏭ INTRO</button>
-            </div>
-            <div class="minis" title="Réponses aux questions du jeu">
-              <button data-k="79">OUI</button>
-              <button data-k="78">NON</button>
-              <button data-k="49">1</button>
-              <button data-k="50">2</button>
-            </div>
-          </div>
+        <div class="pad">
+          <button data-k="11" class="up">▲</button>
+          <button data-k="8" class="left">◀</button>
+          <button data-k="10" class="down">▼</button>
+          <button data-k="9" class="right">▶</button>
         </div>
-        <p class="hint">Composez un ordre : un verbe, puis éventuellement un
-          nom, puis ENTRÉE. OUI/NON et 1/2 répondent aux questions du jeu.</p>
-        <div class="chips" id="chips-verbes"></div>
-        <div class="chips noms" id="chips-noms"></div>
+        <div class="answers">
+          <button data-k="49">1</button>
+          <button data-k="50">2</button>
+          <button data-k="79">O</button>
+          <button data-k="78">N</button>
+          <button data-k="13" class="ok">⏎</button>
+          <button data-k="29">⌫</button>
+        </div>
+        <button data-k="27" class="skip">⏭ PASSER L'INTRO</button>
+        <form id="champ-form" autocomplete="off">
+          <input id="champ" type="text" placeholder="Tapez vos ordres ici (3 lettres suffisent)"
+                 autocomplete="off" autocorrect="off" autocapitalize="characters"
+                 spellcheck="false" enterkeyhint="send">
+        </form>
       </div>
       <aside id="aide" hidden>
         <h3>Aide</h3>
@@ -88,7 +83,7 @@
       (PLAN7.BIN / MOCH7.BIN), émulé dans le navigateur.
       <a href="https://github.com/rdavaillaud/basker">Sources &amp; analyse</a>
     </p>
-  <p class="footer">version 20260830-1610-97b2334</p></main>
-  <script type="module" src="js/main.js?v=20260830-1610-97b2334"></script>
+  <p class="footer">version 20260830-1620-f59553a</p></main>
+  <script type="module" src="js/main.js?v=20260830-1620-f59553a"></script>
 </body>
 </html>
