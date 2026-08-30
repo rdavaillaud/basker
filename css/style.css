@@ -17,6 +17,7 @@ body {
 main {
   padding: 24px 16px 40px;
   max-width: 1020px;
+  min-width: 0;          /* enfant flex : ne jamais déborder de l'écran */
   text-align: center;
 }
 

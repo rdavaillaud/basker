@@ -2,7 +2,7 @@
 // grille texte 40×25 façon BASIC (COLOR/LOCATE/PRINT, coupure dure à 40
 // colonnes, police bitmap 8×8), primitives ROM point/segment.
 
-import { FONT } from './font.js?v=20260830-1648-4531a8e';
+import { FONT } from './font.js?v=20260830-1713-3a39f53';
 
 // Palette TO8 par défaut (indices BASIC 0-15).
 export const PALETTE = [

@@ -2,8 +2,8 @@
 // data/game-data.json (table des déplacements décodée), avec la miniature
 // de chaque lieu dessinée par le moteur graphique 6809 émulé.
 
-import { Emu6809 } from './emu6809.js?v=20260830-1648-4531a8e';
-import { PictureEngine } from './pictures.js?v=20260830-1648-4531a8e';
+import { Emu6809 } from './emu6809.js?v=20260830-1713-3a39f53';
+import { PictureEngine } from './pictures.js?v=20260830-1713-3a39f53';
 
 // Position (colonne, ligne) de chaque lieu, calée sur les directions de la
 // table des déplacements : nord = haut, sud = bas, est = droite, ouest =
@@ -111,7 +111,7 @@ function snapshot(emu, canvas) {
 async function main() {
   const [bins, data] = await Promise.all([
     PictureEngine.loadData('data'),
-    fetch('data/game-data.json?v=20260830-1648-4531a8e').then(r => r.json()),
+    fetch('data/game-data.json?v=20260830-1713-3a39f53').then(r => r.json()),
   ]);
   const rooms = data.lieux;
 
@@ -223,6 +223,13 @@ async function main() {
       svg.appendChild(arrow);
     }
   }
+
+  // cadrage initial : on ouvre la vue sur le lieu de départ du jeu (24),
+  // sinon la fenêtre s'ouvre sur un coin vide de la carte
+  const box = document.getElementById('carte-box');
+  const [dx, dy] = center(24);
+  box.scrollLeft = Math.max(0, dx - box.clientWidth / 2);
+  box.scrollTop = Math.max(0, dy - box.clientHeight / 2);
 
   // miniatures : rendu séquentiel par le moteur émulé
   const { emu, pics } = makeRenderer(bins);
