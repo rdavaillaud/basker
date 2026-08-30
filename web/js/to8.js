@@ -1,6 +1,8 @@
 // Écran TO8 : composition des banques vidéo (forme/couleur) sur un canvas,
 // grille texte 40×25 façon BASIC (COLOR/LOCATE/PRINT, coupure dure à 40
-// colonnes), primitives ROM point/segment.
+// colonnes, police bitmap 8×8), primitives ROM point/segment.
+
+import { FONT } from './font.js';
 
 // Palette TO8 par défaut (indices BASIC 0-15).
 export const PALETTE = [
@@ -128,7 +130,19 @@ export class TO8Screen {
 
   scrollWindow() {
     for (let r = this.winTop; r < this.winBottom; r++) this.cells[r] = this.cells[r + 1];
-    this.cells[this.winBottom] = new Array(40).fill(null);
+    // Comme sur TO8, la nouvelle ligne est remplie avec le fond courant.
+    this.cells[this.winBottom] = Array.from({ length: 40 }, () =>
+      ({ ch: ' ', fg: this.forme, bg: this.fond, big: false, wide: false }));
+    this.dirty = true;
+  }
+
+  // Remplit une plage de lignes avec des espaces dans le fond donné
+  // (équivalent du CLS de la fenêtre CONSOLE).
+  fillRows(r0, r1, fg, bg) {
+    for (let r = r0; r <= r1; r++) {
+      this.cells[r] = Array.from({ length: 40 }, () =>
+        ({ ch: ' ', fg, bg, big: false, wide: false }));
+    }
     this.dirty = true;
   }
 
@@ -179,20 +193,25 @@ export class TO8Screen {
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(this.gfx, 0, 0, 640, 400);
 
-    // couche texte
-    ctx.textBaseline = 'middle';
+    // couche texte : police bitmap 8×8 (2 px canvas par pixel de glyphe,
+    // 4 px de haut pour les caractères double hauteur ATTRB)
     for (let r = 0; r < 25; r++) {
       for (let c = 0; c < 40; c++) {
         const cell = this.cells[r][c];
         if (!cell) continue;
         const x = c * 16, y = r * 16;
-        const h = cell.big ? 32 : 16;
+        const ph = cell.big ? 4 : 2;
         ctx.fillStyle = PALETTE[cell.bg];
-        ctx.fillRect(x, y, 16, h);
+        ctx.fillRect(x, y, 16, 8 * ph);
+        const glyph = FONT[cell.ch] || FONT['?'];
         ctx.fillStyle = PALETTE[cell.fg];
-        ctx.font = cell.big ? 'bold 26px "Courier New", monospace'
-                            : 'bold 15px "Courier New", monospace';
-        ctx.fillText(cell.ch, x + 2, y + h / 2 + 1);
+        for (let gy = 0; gy < 8; gy++) {
+          const row = glyph[gy];
+          if (!row) continue;
+          for (let gx = 0; gx < 8; gx++) {
+            if (row & (0x80 >> gx)) ctx.fillRect(x + gx * 2, y + gy * ph, 2, ph);
+          }
+        }
       }
     }
     // curseur

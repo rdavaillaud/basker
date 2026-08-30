@@ -316,10 +316,12 @@ export class Game {
   // ---------- boucle principale ----------
   async run() {
     this.reset();
-    // ligne 120 : écran de jeu
+    // ligne 120 : écran de jeu — la console (lignes 18-24) est peinte en
+    // blanc comme sur l'original (CLS de la fenêtre CONSOLE avec fond 7)
     this.scr.setWindow(18, 24);
     this.scr.cells.forEach((row, i) => this.scr.cells[i] = new Array(40).fill(null));
     this.scr.clearGraphics(0);
+    this.scr.fillRows(18, 24, 4, 7);
     for (let a = 0; a <= 3; a++) this.scr.box(20 + a, 4 + a, 307 - a, 123 - a, 1);
     await this.play('T5');
     await this.gotoRoom(24);
