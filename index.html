@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Le Trésor des Baskerville — portage web</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <h1>Le Trésor des Baskerville</h1>
+    <p class="subtitle">Jeu d'aventure © CHIP 1987 — André Rocques &amp; Paul Duplierto —
+      portage web du jeu Thomson TO8 (graphismes vectoriels originaux émulés)</p>
+    <div class="frame">
+      <canvas id="screen" width="640" height="400"></canvas>
+      <div id="overlay">
+        <div class="panel">
+          <h2>Le Trésor des Baskerville</h2>
+          <p>Votre oncle Alexander Baskerville est mort dans un mystérieux
+            accident de chasse près du Loch Ness. Vous voilà, jeune héritier,
+            au manoir familial…</p>
+          <p class="keys">Tapez les <b>3 premières lettres</b> de chaque mot ·
+            <b>Entrée</b> valide · <b>Retour</b> efface un mot ·
+            <b>Flèches</b> pour se déplacer · <b>Échap</b> passe l'intro</p>
+          <button disabled>JOUER</button>
+          <p id="status">Chargement…</p>
+        </div>
+      </div>
+    </div>
+    <p class="footer">
+      Portage fidèle : les dessins sont tracés par le moteur 6809 d'origine
+      (PLAN7.BIN / MOCH7.BIN), émulé dans le navigateur.
+      <a href="https://github.com/rdavaillaud/basker">Sources &amp; analyse</a>
+    </p>
+  </main>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
